@@ -11,7 +11,7 @@ require('dotenv').config();
 const helmet = require('helmet');
 const cors = require('cors');
 const baseRoute = require('./app/base/base.route');
-const { environment, database, logger } = require('./config');
+const { environment, database } = require('./config');
 
 const app = express();
 app.use(cors());
@@ -26,7 +26,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.use((req, res, next) => {
-  req.logger = logger;
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, x-access-token');
@@ -44,4 +43,4 @@ database.connect(environment.dbUrl);
 // start server on defined port based on environment
 app.listen(environment.port);
 
-logger.log(`Yo! we are live at ${environment.port}`);
+console.log(`Yo! we are live at ${environment.port}`);

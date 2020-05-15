@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const logger = require('./logger');
 
 /**
  * Facilitate connection to database
@@ -9,9 +8,9 @@ const logger = require('./logger');
 exports.connect = function (url) {
   mongoose.connect(url, { useNewUrlParser: true })
     .then(() => {
-      logger.log('database successfully connected');
+      console.log('database successfully connected');
     })
     .catch((err) => {
-      logger.error(`database connection failure: \n ${err.stack}`);
+      console.error(`database connection failure: \n ${err.stack}`);
     });
 };
