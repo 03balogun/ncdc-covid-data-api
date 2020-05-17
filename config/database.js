@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
  * @return {*} log to show success or failure of connection
  */
 exports.connect = function (url) {
-  mongoose.connect(url, { useNewUrlParser: true })
+  mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log('database successfully connected');
     })
