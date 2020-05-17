@@ -7,7 +7,7 @@ environments.development = {
 };
 
 environments.production = {
-  port: process.env.PROD_PORT,
+  port: process.env.PORT || process.env.PROD_PORT,
   envName: 'production',
   dbUrl: process.env.DATABASE_SERVER
 };

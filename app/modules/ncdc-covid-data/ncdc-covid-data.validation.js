@@ -7,7 +7,7 @@ const validationRules = {
   },
   getById: {
     rules: {
-      id: 'required|mongoId|exists:ncdc,_id'
+      // id: 'required|mongoId|exists:ncdc,_id'
     },
     customMessages: {}
   },
