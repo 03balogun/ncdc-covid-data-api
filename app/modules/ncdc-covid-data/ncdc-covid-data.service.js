@@ -92,7 +92,7 @@ class ncdcCovidDataServices extends BaseService {
     const result = await this.model.aggregate([
       {
         $group: {
-          _id: { $toString: '$state' },
+          _id: '$state',
           report_date: { $last: { $dateToString: { format: '%d-%m-%Y', date: '$report_date' } } },
           state: { $last: '$state' },
           total_confirmed_cases: { $last: '$total_confirmed_cases' },

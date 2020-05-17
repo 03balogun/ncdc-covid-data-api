@@ -23,7 +23,7 @@ const isJson = (item) => {
 const buildResponse = (status, payload) => {
   if (status === 'success') {
     return Promise.resolve({
-      status: 'success', message: 'Success', statusCode: 200, result: payload
+      status: 'success', message: 'Success', statusCode: 200, ...payload
     });
   }
   const errMsg = payload.type === 'validationError'
