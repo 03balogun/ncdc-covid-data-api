@@ -11,7 +11,7 @@ Data served from this API were extracted from the [NCDC COVID-19 Situation repor
 * Sourcecode to the webapp can be found here [ncdc-covid-data-web](https://github.com/03balogun/ncdc-covid-data-web)
 
 ## API Documentation
-coming soon
+[https://documenter.getpostman.com/view/6109250/SzmmUup4](https://documenter.getpostman.com/view/6109250/SzmmUup4)
 
 ## Built With
 - [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. 
