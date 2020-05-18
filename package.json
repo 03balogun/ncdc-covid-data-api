@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/03balogun/ncdc-covid-data-api#readme",
   "dependencies": {
-    "apicache": "^1.5.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
@@ -27,6 +26,7 @@
     "helmet": "^3.21.3",
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
+    "node-cache": "^5.1.0",
     "pug": "^2.0.3",
     "validatorjs": "^3.15.1"
   },

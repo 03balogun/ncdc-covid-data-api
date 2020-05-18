@@ -1,5 +1,9 @@
 const BaseController = require('../../base/base.controller');
 const ncdcService = require('./ncdc-covid-data.service');
+const CacheService = require('../../utils/cache.service');
+
+const ttl = 60 * 60; // time to live - cache for 1 Hour
+const cache = new CacheService(ttl); // Create a new cache service instance
 
 /**
  * @ncdcController
@@ -21,9 +25,14 @@ class NcdcCovidDataController extends BaseController {
    */
   async getEpicurveGroupByDate (req, res) {
     try {
-      const result = await this.moduleService.getEpicurveGroupByDate(req.query);
-      return res.status(result.statusCode).send(result);
+
+      const storeFunction = async () => await this.moduleService.getEpicurveGroupByDate(req.query);
+
+      const cacheResult = await cache.get(req.query.state || 'all', storeFunction);
+
+      return res.status(cacheResult.statusCode).send(cacheResult);
     } catch (error) {
+      console.log(error);
       return res.status(500).send('Internal server error');
     }
   }
@@ -37,8 +46,12 @@ class NcdcCovidDataController extends BaseController {
    */
   async getEpicurveForState (req, res) {
     try {
-      const result = await this.moduleService.getEpicurveForState();
-      return res.status(result.statusCode).send(result);
+
+      const storeFunction = async () => await this.moduleService.getEpicurveForState();
+
+      const cacheResult = await cache.get( 'getEpicurveForState', storeFunction);
+
+      return res.status(cacheResult.statusCode).send(cacheResult);
     } catch (error) {
       console.error(error);
       return res.status(500).send('Internal server error');
