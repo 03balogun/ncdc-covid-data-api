@@ -5,6 +5,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require("express-rate-limit");
 const baseRoute = require('./app/base/base.route');
+const expressGoogleAnalytics = require('express-google-analytics');
+
 const { environment, database } = require('./config');
 
 const app = express();
@@ -13,6 +15,11 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(helmet());
+
+if (process.env.ANALYTICS_ID) {
+    const analytics = expressGoogleAnalytics(process.env.ANALYTICS_ID);
+    app.use(analytics);
+}
 
 
 // rate limit requests in production to 10request perm/min
