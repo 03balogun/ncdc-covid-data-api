@@ -16,14 +16,14 @@ app.use(express.json());
 app.use(morgan('combined'));
 app.use(helmet());
 
-if (process.env.ANALYTICS_ID) {
-    const analytics = expressGoogleAnalytics(process.env.ANALYTICS_ID);
-    app.use(analytics);
-}
-
 
 // rate limit requests in production to 10request perm/min
 if (process.env.NODE_ENV === "production") {
+
+    if (process.env.ANALYTICS_ID) {
+        const analytics = expressGoogleAnalytics(process.env.ANALYTICS_ID);
+        app.use(analytics);
+    }
 
     app.set('trust proxy', 1);
     const limiter = rateLimit({
