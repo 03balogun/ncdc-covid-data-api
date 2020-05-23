@@ -57,6 +57,15 @@ class NcdcCovidDataController extends BaseController {
       return res.status(500).send('Internal server error');
     }
   }
+
+  async clearCache(req, res) {
+    try {
+      await cache.flush();
+      return res.status(200).send({status: 'success', message: 'Succesfully clear cache'});
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 module.exports = new NcdcCovidDataController();
