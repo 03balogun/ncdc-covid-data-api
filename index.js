@@ -35,10 +35,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(limiter);
 }
 
-app.use('/', (req, res, next) => {
-    console.log(req.headers);
-    next();
-}, baseRoute);
+app.use('/', baseRoute);
 
 // connect to DB
 database.connect(environment.dbUrl);
